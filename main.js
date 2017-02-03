@@ -21,12 +21,17 @@ function addItem(state, name){
   state.items.push(myItem);
 };
 
-// function removeItem(state, itemIndex){
-//   // We'll want to find the itemIndex by which delete button was clicked
-//   // something along the lines of event.currentTarget or 'this'
-//   state.items.splice();
-// };
-
+function removeItem(state, name){
+  for (var i = 0; i < state.items.length; i++) {
+    if (name === state.items[i].name) {
+      state.items.splice(i,1);
+    }
+  }
+};
+// function displayRemove(location) {
+//   display(shoppingList,location);
+//
+// }
 function toggleCheck(state, name){
   state.items.forEach(function(item){
     if (item.name == name){
@@ -38,6 +43,7 @@ function toggleCheck(state, name){
 function toggleStrikethrough(location){
   location.toggleClass('shopping-item__checked');
 }
+
 
 // step 3: display Shopping list
 // write a function with parameters for state object and html element
@@ -74,16 +80,16 @@ function eventHandlers(){
       addItem(shoppingList, $('#shopping-list-entry').val());
       display(shoppingList, $('.shopping-list'));
     });
-    //need to add arguments for toggleCheck
-    //console.log($('button.shopping-item-toggle'));
+
     $('ul').on('click', '.shopping-item-toggle', function (event) {
       toggleCheck(shoppingList, $(event.currentTarget).closest("li").children('span').text());
       toggleStrikethrough($(event.currentTarget).closest("li").children('span'));
     });
-    //need to add arguments for removeItem
-    // $('.shopping-item-delete').click(function (event){
-    //   removeItem(shoppingList, );
-    // })
+
+    $('ul').on('click','.shopping-item-delete', function (event){
+      removeItem(shoppingList, $(event.currentTarget).closest("li").children('span').text());
+      display(shoppingList, $('.shopping-list'));
+    })
 };
 
 $(eventHandlers);
