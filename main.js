@@ -22,9 +22,9 @@ function addItem(state, item){
 };
 
 // function removeItem(state, itemIndex){
-  // We'll want to find the itemIndex by which delete button was clicked
-  // something along the lines of event.currentTarget or 'this'
-  // state.items.splice();
+//   // We'll want to find the itemIndex by which delete button was clicked
+//   // something along the lines of event.currentTarget or 'this'
+//   state.items.splice();
 // };
 
 // function toggleCheck(state, item){
@@ -37,9 +37,20 @@ function addItem(state, item){
 // use map to return array with our items enclosed in <li> tags
 // use element.html(mappedArray) to display the list on the DOM
 function display(state,element) {
-  var displayArray = state.items.map(item){
-    return '<li>' + item.name + "</li>";
-  };
+  var displayArray = state.items.map(item=>{
+    return
+    '<li>'+
+      '<span class="shopping-item">' + item.name + '</span>' +
+      '<div class="shopping-item-controls">' +
+        '<button class="shopping-item-toggle">' +
+          '<span class="button-label">check</span>' +
+        '</button>' +
+        '<button class="shopping-item-delete">' +
+          '<span class="button-label">delete</span>' +
+        '</button>' +
+      '</div>' +
+    '</li>';
+  });
   element.html(displayArray);
 };
 
@@ -52,10 +63,11 @@ function display(state,element) {
 // listen for "delete" click
 //    remove item object from our state object's array (splice or slice)
 function eventHandlers(){
-    $('#js-shopping-list').submit(function (event) {
+    console.log("hi");$('#js-shopping-list').submit(function (event) {
       event.preventDefault();
       addItem(shoppingList, $('#shopping-list-entry').val());
       display(shoppingList, $('.shopping-list'));
+      console.log("hello");
     });
 };
 $(eventHandlers);
