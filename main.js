@@ -27,17 +27,17 @@ function addItem(state, name){
 //   state.items.splice();
 // };
 
-// function toggleCheck(state, item){
-//   state.items[items[toggleClass(item);
-//   class: shopping-item__checked
-// };
+function toggleCheck(state, item){
+  console.log("hello");
+  //state.items[items[toggleClass(item);
+  //class: shopping-item__checked
+};
 
 // step 3: display Shopping list
 // write a function with parameters for state object and html element
 // use map to return array with our items enclosed in <li> tags
 // use element.html(mappedArray) to display the list on the DOM
-function display(state,element)
- { console.log(state.items);
+function display(state,element) {
   var displayArray = state.items.map(item=>{
     return '<li>'+
       '<span class="shopping-item">' + item.name + '</span>' +
@@ -51,7 +51,6 @@ function display(state,element)
       '</div>' +
     '</li>';
   });
-  console.log(displayArray);
   element.html(displayArray);
 };
 
@@ -64,12 +63,21 @@ function display(state,element)
 // listen for "delete" click
 //    remove item object from our state object's array (splice or slice)
 function eventHandlers(){
-     $('#js-shopping-list-form').submit(function (event) {
+    $('#js-shopping-list-form').submit(function (event) {
       event.preventDefault();
       addItem(shoppingList, $('#shopping-list-entry').val());
-      console.log(shoppingList);
       display(shoppingList, $('.shopping-list'));
-      console.log("hello");
     });
+    //need to add arguments for toggleCheck
+    //console.log($('button.shopping-item-toggle'));
+    $('ul').on('click', '.shopping-item-toggle', function (event) {
+      console.log("hi");
+      toggleCheck(shoppingList, currentTarget);
+    });
+    //need to add arguments for removeItem
+    // $('.shopping-item-delete').click(function (event){
+    //   removeItem(shoppingList, );
+    // })
 };
+
 $(eventHandlers);
