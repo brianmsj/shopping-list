@@ -14,25 +14,34 @@ var shoppingList = {
 //          (later we can use this to alter CSS by adding "js-done" class)
 
 function addItem(state, item){
-  state.items.push(item);
+  myItem = {
+    name: item,
+    done: false
+  }
+  state.items.push(myItem);
 };
 
-function removeItem(state, itemIndex){
+// function removeItem(state, itemIndex){
   // We'll want to find the itemIndex by which delete button was clicked
   // something along the lines of event.currentTarget or 'this'
-  state.items.splice();
-}
+  // state.items.splice();
+// };
 
-function toggleCheck(state, item){
-  state.item.toggleClass();
-  // class: shopping-item__checked
-}
+// function toggleCheck(state, item){
+//   state.items[items[toggleClass(item);
+//   class: shopping-item__checked
+// };
 
 // step 3: display Shopping list
 // write a function with parameters for state object and html element
 // use map to return array with our items enclosed in <li> tags
 // use element.html(mappedArray) to display the list on the DOM
-
+function display(state,element) {
+  var displayArray = state.items.map(item){
+    return '<li>' + item.name + "</li>";
+  };
+  element.html(displayArray);
+};
 
 // step 4: adding event listeners
 // listen for form submission click
@@ -42,3 +51,11 @@ function toggleCheck(state, item){
 //    modify item by toggling item's "done" key's value
 // listen for "delete" click
 //    remove item object from our state object's array (splice or slice)
+function eventHandlers(){
+    $('#js-shopping-list').submit(function (event) {
+      event.preventDefault();
+      addItem(shoppingList, $('#shopping-list-entry').val());
+      display(shoppingList, $('.shopping-list'));
+    });
+};
+$(eventHandlers);
