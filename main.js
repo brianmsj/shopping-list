@@ -63,7 +63,8 @@ function display(state,element) {
 // listen for "delete" click
 //    remove item object from our state object's array (splice or slice)
 function eventHandlers(){
-    console.log("hi");$('#js-shopping-list').submit(function (event) {
+    console.log($('#js-shopping-list-form').text());
+     $('#js-shopping-list-form').submit(function (event) {
       event.preventDefault();
       addItem(shoppingList, $('#shopping-list-entry').val());
       display(shoppingList, $('.shopping-list'));
