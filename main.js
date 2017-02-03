@@ -27,11 +27,17 @@ function addItem(state, name){
 //   state.items.splice();
 // };
 
-function toggleCheck(state, item){
-  console.log("hello");
-  //state.items[items[toggleClass(item);
-  //class: shopping-item__checked
+function toggleCheck(state, name){
+  state.items.forEach(function(item){
+    if (item.name == name){
+      item.done = !item.done;
+    };
+  });
 };
+
+function toggleStrikethrough(location){
+  location.toggleClass('shopping-item__checked');
+}
 
 // step 3: display Shopping list
 // write a function with parameters for state object and html element
@@ -71,8 +77,8 @@ function eventHandlers(){
     //need to add arguments for toggleCheck
     //console.log($('button.shopping-item-toggle'));
     $('ul').on('click', '.shopping-item-toggle', function (event) {
-      console.log("hi");
-      toggleCheck(shoppingList, currentTarget);
+      toggleCheck(shoppingList, $(event.currentTarget).closest("li").children('span').text());
+      toggleStrikethrough($(event.currentTarget).closest("li").children('span'));
     });
     //need to add arguments for removeItem
     // $('.shopping-item-delete').click(function (event){
