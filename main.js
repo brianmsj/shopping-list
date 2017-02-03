@@ -13,9 +13,9 @@ var shoppingList = {
 //  c) check off items (toggle item's "done" key)
 //          (later we can use this to alter CSS by adding "js-done" class)
 
-function addItem(state, item){
+function addItem(state, name){
   myItem = {
-    name: item,
+    name: name,
     done: false
   }
   state.items.push(myItem);
@@ -36,10 +36,10 @@ function addItem(state, item){
 // write a function with parameters for state object and html element
 // use map to return array with our items enclosed in <li> tags
 // use element.html(mappedArray) to display the list on the DOM
-function display(state,element) {
+function display(state,element)
+ { console.log(state.items);
   var displayArray = state.items.map(item=>{
-    return
-    '<li>'+
+    return '<li>'+
       '<span class="shopping-item">' + item.name + '</span>' +
       '<div class="shopping-item-controls">' +
         '<button class="shopping-item-toggle">' +
@@ -51,6 +51,7 @@ function display(state,element) {
       '</div>' +
     '</li>';
   });
+  console.log(displayArray);
   element.html(displayArray);
 };
 
@@ -63,10 +64,10 @@ function display(state,element) {
 // listen for "delete" click
 //    remove item object from our state object's array (splice or slice)
 function eventHandlers(){
-    console.log($('#js-shopping-list-form').text());
      $('#js-shopping-list-form').submit(function (event) {
       event.preventDefault();
       addItem(shoppingList, $('#shopping-list-entry').val());
+      console.log(shoppingList);
       display(shoppingList, $('.shopping-list'));
       console.log("hello");
     });
