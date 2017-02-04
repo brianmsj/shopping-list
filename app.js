@@ -8,10 +8,9 @@ var shoppingList = {
 
 // step 2: modifying the state
 // create items
-//  a) pushing items to the state object
+//  a) push items to the state object
 //  b) remove items from the state object (look at splice vs slice)
 //  c) check off items (toggle item's "done" key)
-//          (later we can use this to alter CSS by adding "js-done" class)
 
 function addItem(state, name){
   myItem = {
@@ -28,10 +27,7 @@ function removeItem(state, name){
     }
   }
 };
-// function displayRemove(location) {
-//   display(shoppingList,location);
-//
-// }
+
 function toggleCheck(state, name){
   state.items.forEach(function(item){
     if (item.name == name){
@@ -72,6 +68,7 @@ function display(state,element) {
 //    call display function to display modified list
 // listen for "check off" click
 //    modify item by toggling item's "done" key's value
+//    add "shopping-item__checked" class to item in DOM
 // listen for "delete" click
 //    remove item object from our state object's array (splice or slice)
 function eventHandlers(){
