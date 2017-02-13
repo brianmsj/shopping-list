@@ -46,9 +46,9 @@ function toggleStrikethrough(location){
 // use map to return array with our items enclosed in <li> tags
 // use element.html(mappedArray) to display the list on the DOM
 function display(state,element) {
-  var displayArray = state.items.map(item=>{
+  var displayArray = state.items.map(item => {
     return '<li>'+
-      '<span class="shopping-item">' + item.name + '</span>' +
+      '<span class="shopping-item ' + (item.done ? 'shopping-item__checked' : '') + '">' + item.name + '</span>' +
       '<div class="shopping-item-controls">' +
         '<button class="shopping-item-toggle">' +
           '<span class="button-label">check</span>' +
@@ -86,7 +86,7 @@ function eventHandlers(){
     $('ul').on('click','.shopping-item-delete', function (event){
       removeItem(shoppingList, $(event.currentTarget).closest("li").children('span').text());
       display(shoppingList, $('.shopping-list'));
-    })
+    });
 };
 
 $(eventHandlers);
